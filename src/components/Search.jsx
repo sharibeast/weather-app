@@ -18,7 +18,11 @@ export default function Search() {
           </div>
           <div className="relative">
             {" "}
-            <AiOutlineSearch className="absolute inset-4" />
+            <AiOutlineSearch
+              size={35}
+              color={"white"}
+              className="absolute inset-1 inset-x-4"
+            />
             <div className="flex justify-around">
               <input
                 className="block w-3/5 py-2 bg-gray-800"
