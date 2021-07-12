@@ -1,18 +1,18 @@
 import React from "react";
 import { BiCurrentLocation } from "react-icons/bi";
-import styled from "styled-components";
 
 export default function Search() {
-  const Container = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  `;
-
   return (
-    <Container>
-      <input type="text" name="search" id="search" />
-      <BiCurrentLocation />
-    </Container>
+    <div className="flex items-center justify-between bg-gray-900">
+      <div className="shadow-lg">
+        <input
+          className="p-3 my-3 ml-3 placeholder-white bg-gray-500 focus:outline-none w-44"
+          placeholder="Search for places"
+        />
+      </div>
+      <div className="mr-3">
+        <BiCurrentLocation />
+      </div>
+    </div>
   );
 }
