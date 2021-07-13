@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Weather() {
   return (
-    <div>
+    <div className="text-white">
       <p>tomorrow</p>
       <h1>ICONS</h1>
       <div>

@@ -1,10 +1,15 @@
-import "./App.css";
 import Search from "./components/Search.jsx";
+import Weather from "./components/Weather";
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Search />
+      <div>
+        <div>
+          <Weather />
+        </div>
+      </div>
     </div>
   );
 }
