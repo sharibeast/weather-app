@@ -1,15 +1,11 @@
-import Search from "./components/Search.jsx";
-import Weather from "./components/Weather";
+import Highlights from "./components/Highlights";
+import Search from "./components/Search";
 
 function App() {
   return (
-    <div className="">
+    <div className="text-white bg-gray-900 md:flex md:bg-blue-500">
       <Search />
-      <div>
-        <div>
-          <Weather />
-        </div>
-      </div>
+      <Highlights />
     </div>
   );
 }
