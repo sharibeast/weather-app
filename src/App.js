@@ -3,7 +3,7 @@ import Search from "./components/Search";
 
 function App() {
   return (
-    <div className="text-white bg-gray-900 md:flex md:bg-blue-500">
+    <div className="h-screen text-white bg-black md:flex ">
       <Search />
       <Highlights />
     </div>
