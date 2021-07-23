@@ -18,7 +18,6 @@ export default function Search() {
 
   const fetchWeather = async () => {
     const response = await axios.get(
-      //cors-anywhere.herokuapp.com/https://www.metaweather.com/api
       `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?lattlong=${lat[0]},${long[0]}`,
     );
     console.log(response.data);
@@ -41,7 +40,8 @@ export default function Search() {
                 className="w-3/4 p-2 mr-2 text-red-500"
                 placeholder="search location"
                 list="cities"
-                // ref={inputCity}
+                // tCijuoefgdfjkvsdkvisduvsdvbsdibi
+                // this is the story of my life as am trying to be the best developer so i can help my family
               />
               <button className="w-1/5 p-2 bg-blue-600 ">search</button>
             </form>
