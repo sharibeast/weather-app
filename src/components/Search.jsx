@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TiLocation } from 'react-icons/ti';
 import { BiCurrentLocation } from 'react-icons/bi';
 import Svg from '../assets/rainy-3.svg';
@@ -6,44 +6,61 @@ import axios from 'axios';
 export default function Search() {
   const handleSearch = () => setShowSearch(!showSearch);
   const [showSearch, setShowSearch] = useState(false);
+  const [location, setLocation] = useState('');
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
+  const [woeid, setWoeid] = useState(null);
 
-  const fetchLocation = () => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      setLat(pos.coords.latitude);
-      setLong(pos.coords.longitude);
-    });
+  const API = 'https://www.metaweather.com/api/location/search/?query=';
+  const axiosClient = axios.create();
+  axiosClient.defaults.baseURL = `${API}`;
+  axiosClient.defaults.headers = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
   };
 
-  const fetchWeather = async () => {
-    const response = await axios.get(
-      `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?lattlong=${lat[0]},${long[0]}`,
-    );
-    console.log(response.data);
+  // all request will wait 2seconds before timeout
+  axiosClient.defaults.timeout = 2000;
+  axiosClient.defaults.withCredentials = true;
+
+  // end of the axios setup
+  const refContainer = useRef();
+
+  const fetchID = () => {
+    return axiosClient
+      .get(
+        `https://www.metaweather.com/api/location/search/?query=${location}.`,
+      )
+      .then((res) => console.log('hiii', res.data));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(refContainer.current.value);
+    setLocation(refContainer.current.value);
   };
 
   useEffect(() => {
-    fetchLocation();
-    console.log('latitude', lat);
-    console.log('longitude', long);
-    fetchWeather();
-  });
+    fetchID();
+  }, [fetchID]);
 
   return (
     <div className="p-3 text-white md:w-2/5">
       {showSearch ? (
         <>
           <div>
-            <form>
+            <form onSubmit={handleSubmit}>
               <input
                 className="w-3/4 p-2 mr-2 text-red-500"
                 placeholder="search location"
                 list="cities"
+                ref={refContainer}
                 // tCijuoefgdfjkvsdkvisduvsdvbsdibi
                 // this is the story of my life as am trying to be the best developer so i can help my family
               />
-              <button className="w-1/5 p-2 bg-blue-600 ">search</button>
+              <button type="submit" className="w-1/5 p-2 bg-blue-600 ">
+                search
+              </button>
             </form>
             <datalist id="cities">
               <option value="London" />
